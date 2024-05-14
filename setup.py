@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='gcloud_run_flask_python',
+    name='gcloudrun_flask_python',
     version='0.1',
     packages=find_packages(),
     install_requires=[
@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'gcloud_run_flask_python = gcloud_run_flask_python.cli:main'
+            'gcloudrun_flask_python = gcloud_run_flask_python.cli:main'
         ]
     }
 )
