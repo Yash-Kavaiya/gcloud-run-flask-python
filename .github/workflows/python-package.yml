@@ -30,7 +30,7 @@ jobs:
     - name: Build and publish to PyPI
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
-        TWINE_USERNAME: __token__
+        TWINE_USERNAME: __Token_
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         python setup.py sdist bdist_wheel
