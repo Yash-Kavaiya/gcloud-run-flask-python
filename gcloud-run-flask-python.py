@@ -1,13 +1,14 @@
 import os
 import subprocess
-project_name=input("Please enter your project name :(Please do not add spaces)")
-# Create a new directory named helloworld and change directory into it
-os.makedirs(project_name, exist_ok=True)
-os.chdir(project_name)
 
-# Create a file named main.py and write the following code into it
-with open('main.py', 'w') as f:
-    f.write('''import os
+def main():
+    project_name = input("Please enter your project name (Please do not add spaces): ")
+    os.makedirs(project_name, exist_ok=True)
+    os.chdir(project_name)
+
+    # Create a file named main.py and write the following code into it
+    with open('main.py', 'w') as f:
+        f.write('''import os
 from flask import Flask, render_template
 app = Flask(__name__)
 @app.route('/')
@@ -16,19 +17,18 @@ def index():
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))''')
 
-# Create a file named requirements.txt and write the following code into it
-with open('requirements.txt', 'w') as f:
-    f.write('''Flask==3.0.3
+    # Create a file named requirements.txt and write the following code into it
+    with open('requirements.txt', 'w') as f:
+        f.write('''Flask==3.0.3
 gunicorn==22.0.0
 Werkzeug==3.0.3''')
-import os
 
-# Create a new directory named templates
-os.makedirs('templates', exist_ok=True)
+    # Create a new directory named templates
+    os.makedirs('templates', exist_ok=True)
 
-# Create a file named index.html in the templates directory and write the HTML code into it
-with open(os.path.join('templates', 'index.html'), 'w') as f:
-    f.write('''<!DOCTYPE html>
+    # Create a file named index.html in the templates directory and write the HTML code into it
+    with open(os.path.join('templates', 'index.html'), 'w') as f:
+        f.write('''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -85,9 +85,12 @@ with open(os.path.join('templates', 'index.html'), 'w') as f:
 </html>
 ''')
     
-# Install the required packages
-try:
-    subprocess.run(["pip", "install", "-r", "requirements.txt"])
-    print("Required packages installed successfully.")
-except subprocess.CalledProcessError as e:
-    print(f"Error occurred while installing packages: {e}")
+    # Install the required packages
+    try:
+        subprocess.run(["pip", "install", "-r", "requirements.txt"])
+        print("Required packages installed successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while installing packages: {e}")
+
+if __name__ == "__main__":
+    main()
