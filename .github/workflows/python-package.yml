@@ -11,27 +11,28 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2 # Check if there's a newer version
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2 # Check if there's a newer version
       with:
-        python-version: '3.x'
+        python-version: '3.x' # Specify the exact version if needed
 
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install twine
+        pip install twine pytest # Assuming pytest is used for testing
 
     - name: Test with pytest
       run: |
-        # Add your test command here
+        pytest # Replace with your test command
 
     - name: Build and publish to PyPI
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       env:
-        TWINE_USERNAME: __Token_
+        TWINE_USERNAME: __token__ # Ensure this is correct
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
+# Consider adding a step for automated versioning
